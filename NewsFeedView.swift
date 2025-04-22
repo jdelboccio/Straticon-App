@@ -1,5 +1,5 @@
 import SwiftUI
-import UIHelpersNew
+import UIHelpersDark
 
 struct NewsItem: Identifiable {
     let id = UUID()
@@ -27,7 +27,7 @@ struct NewsFeedView: View {
             }
             .listStyle(PlainListStyle())
             .navigationTitle("News")
-            .background(AppTheme.backgroundGray)
+            .background(AppTheme.backgroundDark)
         }
     }
 }
@@ -38,12 +38,12 @@ struct NewsCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(newsItem.title)
-                .interFont(size: 20, weight: .bold)
+                .interFont(size: 20, weight: .thin)
                 .foregroundColor(AppTheme.primaryColor)
 
             Text(newsItem.snippet)
-                .interFont(size: 16, weight: .regular)
-                .foregroundColor(.primary)
+                .interFont(size: 16, weight: .thin)
+                .foregroundColor(.white)
 
             if let imageName = newsItem.imageName {
                 Image(systemName: imageName)
@@ -52,6 +52,7 @@ struct NewsCardView: View {
                     .frame(height: 120)
                     .cornerRadius(AppTheme.cornerRadius)
                     .padding(.vertical, 4)
+                    .foregroundColor(AppTheme.primaryColor)
             }
 
             HStack {
@@ -75,8 +76,6 @@ struct NewsCardView: View {
 
 struct NewsFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsFeedView()
-            .preferredColorScheme(.light)
         NewsFeedView()
             .preferredColorScheme(.dark)
     }
