@@ -1,5 +1,5 @@
 import SwiftUI
-import UIHelpersNew
+import UIHelpersDark
 
 struct Project: Identifiable {
     let id = UUID()
@@ -22,17 +22,17 @@ struct ProjectsView: View {
                 NavigationLink(destination: ProjectDetailView(project: project)) {
                     VStack(alignment: .leading) {
                         Text(project.name)
-                            .interFont(size: 18, weight: .bold)
+                            .interFont(size: 18, weight: .thin)
                             .foregroundColor(AppTheme.primaryColor)
                         Text(project.location)
-                            .interFont(size: 14, weight: .regular)
-                            .foregroundColor(.secondary)
+                            .interFont(size: 14, weight: .thin)
+                            .foregroundColor(.white.opacity(0.7))
                     }
                     .padding(.vertical, 8)
                 }
             }
             .navigationTitle("Projects")
-            .background(AppTheme.backgroundGray)
+            .background(AppTheme.backgroundDark)
         }
     }
 }
@@ -44,25 +44,31 @@ struct ProjectDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 Text(project.name)
-                    .interFont(size: 24, weight: .bold)
+                    .interFont(size: 24, weight: .thin)
                     .foregroundColor(AppTheme.primaryColor)
 
                 Text("Address:")
                     .font(.headline)
+                    .foregroundColor(.white.opacity(0.8))
                 Text(project.address)
                     .font(.body)
+                    .foregroundColor(.white.opacity(0.7))
 
                 Text("Key Contacts:")
                     .font(.headline)
+                    .foregroundColor(.white.opacity(0.8))
                 ForEach(project.keyContacts, id: \.self) { contact in
                     Text(contact)
                         .font(.body)
+                        .foregroundColor(.white.opacity(0.7))
                 }
 
                 Text("Schedule Summary:")
                     .font(.headline)
+                    .foregroundColor(.white.opacity(0.8))
                 Text(project.scheduleSummary)
                     .font(.body)
+                    .foregroundColor(.white.opacity(0.7))
 
                 HStack(spacing: 20) {
                 Button(action: {
@@ -86,15 +92,13 @@ struct ProjectDetailView: View {
             }
             .padding()
         }
-        .background(AppTheme.backgroundLight)
+        .background(AppTheme.backgroundDark)
         .navigationTitle("Project Details")
     }
 }
 
 struct ProjectsView_Previews: PreviewProvider {
     static var previews: some View {
-        ProjectsView()
-            .preferredColorScheme(.light)
         ProjectsView()
             .preferredColorScheme(.dark)
     }
