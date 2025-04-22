@@ -1,5 +1,5 @@
 import SwiftUI
-import UIHelpersNew
+import UIHelpersDark
 
 struct Conversation: Identifiable {
     let id = UUID()
@@ -27,17 +27,17 @@ struct MessagingView: View {
                 NavigationLink(destination: ChatView(conversation: conversation)) {
                     VStack(alignment: .leading) {
                         Text(conversation.name)
-                            .interFont(size: 18, weight: .bold)
+                            .interFont(size: 18, weight: .thin)
                             .foregroundColor(AppTheme.primaryColor)
                         Text(conversation.lastMessage)
-                            .interFont(size: 14, weight: .regular)
-                            .foregroundColor(.secondary)
+                            .interFont(size: 14, weight: .thin)
+                            .foregroundColor(.white.opacity(0.7))
                     }
                     .padding(.vertical, 8)
                 }
             }
             .navigationTitle("Messages")
-            .background(AppTheme.backgroundGray)
+            .background(AppTheme.backgroundDark)
         }
     }
 }
@@ -106,14 +106,14 @@ struct MessageBubble: View {
                 Text(message.text)
                     .padding()
                     .background(AppTheme.secondaryColor)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                     .cornerRadius(15)
                     .frame(maxWidth: 250, alignment: .trailing)
             } else {
                 Text(message.text)
                     .padding()
                     .background(AppTheme.primaryColor.opacity(0.2))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.white)
                     .cornerRadius(15)
                     .frame(maxWidth: 250, alignment: .leading)
                 Spacer()
@@ -126,8 +126,6 @@ struct MessageBubble: View {
 
 struct MessagingView_Previews: PreviewProvider {
     static var previews: some View {
-        MessagingView()
-            .preferredColorScheme(.light)
         MessagingView()
             .preferredColorScheme(.dark)
     }
